@@ -1,5 +1,5 @@
-import { prisma } from "../config/database";
-import { TypeCardData } from "../types/CardTypes";
+import { prisma } from "../config/database.js";
+import { TypeCardData } from "../types/CardTypes.js";
 
 export async function createCard(userId: number, card: TypeCardData) {
   return prisma.card.create({ data: { ...card, userId } });
@@ -17,6 +17,6 @@ export async function getOneCard(userId: number, cardId: number) {
   return prisma.card.findFirst({ where: { userId, id: cardId } });
 }
 
-export async function getCardByTitle(title: string, userId: number) {
-  return prisma.card.findFirst({ where: { title, userId } });
+export async function getCardByTitle(userId: number, title: string) {
+  return prisma.card.findFirst({ where: { userId, title } });
 }

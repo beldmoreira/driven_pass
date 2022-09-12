@@ -1,5 +1,5 @@
-import { prisma } from "../config/database";
-import { TypeSafeNoteData } from "../types/SafeNoteTypes";
+import { prisma } from "../config/database.js";
+import { TypeSafeNoteData } from "../types/SafeNoteTypes.js";
 
 export async function createSafeNote(
   userId: number,
@@ -20,6 +20,6 @@ export async function getOneSafeNote(userId: number, safeNoteId: number) {
   return prisma.safeNote.findFirst({ where: { userId, id: safeNoteId } });
 }
 
-export async function getSafeNotesByTitle(title: string, userId: number) {
-  return prisma.safeNote.findFirst({ where: { title, userId } });
+export async function getSafeNotesByTitle(userId: number, title: string) {
+  return prisma.safeNote.findFirst({ where: { userId, title } });
 }

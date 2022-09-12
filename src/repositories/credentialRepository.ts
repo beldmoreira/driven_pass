@@ -2,8 +2,8 @@ import { prisma } from "../config/database.js";
 import { TypeCredentialData } from "../types/CredentialTypes.js";
 
 export async function createCredential(
-  credential: TypeCredentialData,
-  userId: number
+  userId: number,
+  credential: TypeCredentialData
 ) {
   return prisma.credential.create({ data: { ...credential, userId } });
 }
@@ -16,8 +16,8 @@ export async function getAllCredentials(userId: number) {
   return prisma.credential.findMany({ where: { userId } });
 }
 
-export async function getCredentialsByTitle(title: string, userId: number) {
-  return prisma.credential.findFirst({ where: { title, userId } });
+export async function getCredentialsByTitle(userId: number, title: string) {
+  return prisma.credential.findFirst({ where: { userId, title } });
 }
 export async function getOneCredential(userId: number, credentialId: number) {
   return prisma.credential.findFirst({ where: { userId, id: credentialId } });
