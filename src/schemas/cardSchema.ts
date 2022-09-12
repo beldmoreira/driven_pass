@@ -1,6 +1,7 @@
 import joi from "joi";
+import { TypeCardData } from "../types/CardTypes.js";
 
-export const cardSchema = joi.object({
+export const cardSchema = joi.object<TypeCardData>({
   title: joi.string().required(),
   number: joi.string().required(),
   cardHolderName: joi.string().required(),
